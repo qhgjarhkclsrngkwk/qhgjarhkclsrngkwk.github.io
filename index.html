@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f8f7f1">
-
+  <meta name="description" content="보험과 친구하자! 복잡하게 느껴지는 보험 이야기를 이해하기 쉽게 안내해 드립니다.">
+  <meta name="theme-color" content="#f7f8f1">
   <title>보험과 친구하자! | 편안한 보험 상담</title>
-  <meta name="description" content="복잡한 보험 이야기, 이해하기 쉽게 안내해 드립니다. 보험이 궁금할 때 편안하게 상담해 보세요.">
 
   <style>
     :root {
-      --green: #52795b;
-      --green-dark: #365840;
-      --green-light: #edf3e9;
-      --cream: #f8f6ef;
-      --beige: #eee4d3;
-      --text: #303a32;
-      --muted: #667066;
+      --green: #37694f;
+      --green-light: #eaf1e6;
+      --green-pale: #f4f7f0;
+      --beige: #f8f1e6;
+      --cream: #fffdf8;
+      --text: #263b32;
+      --muted: #66746b;
       --white: #ffffff;
+      --border: #e5e9df;
+      --shadow: 0 8px 26px rgba(45, 76, 54, 0.07);
     }
 
     * {
@@ -26,17 +27,17 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
+      scroll-padding-top: 85px;
     }
 
     body {
       margin: 0;
       color: var(--text);
-      background: var(--white);
+      background: var(--cream);
       font-family: "Malgun Gothic", "Apple SD Gothic Neo",
                    "Noto Sans KR", sans-serif;
-      font-size: 18px;
-      line-height: 1.8;
+      font-size: 17px;
+      line-height: 1.75;
       word-break: keep-all;
     }
 
@@ -45,947 +46,717 @@
       text-decoration: none;
     }
 
-    button {
-      font: inherit;
-    }
-
     img {
+      display: block;
+      width: 100%;
       max-width: 100%;
+      object-fit: cover;
+      background: var(--green-light);
     }
 
     .container {
-      width: min(1120px, 90%);
+      width: min(1120px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    /* 상단 메뉴 */
-    .site-header {
+    .header {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 10;
       background: rgba(255, 255, 255, 0.97);
-      border-bottom: 1px solid #e9ece5;
+      border-bottom: 1px solid var(--border);
     }
 
     .header-inner {
-      min-height: 78px;
+      min-height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 24px;
     }
 
-    .logo {
-      color: var(--green-dark);
-      font-size: 26px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--green);
+      font-size: 24px;
       font-weight: 800;
-      letter-spacing: -1.3px;
+      letter-spacing: -1px;
       white-space: nowrap;
     }
 
-    .logo-leaf {
-      color: #8aa778;
-      margin-right: 5px;
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: #719d72;
+      border-radius: 50% 50% 50% 10%;
+      font-size: 20px;
+      transform: rotate(-12deg);
     }
 
-    .menu {
+    .brand-icon span {
+      transform: rotate(12deg);
+    }
+
+    .nav {
       display: flex;
       align-items: center;
-      gap: 25px;
-      font-size: 16px;
+      gap: 27px;
+      font-size: 15px;
       font-weight: 600;
     }
 
-    .menu a:hover {
+    .nav a:hover {
       color: var(--green);
     }
 
-    .menu .menu-button {
-      padding: 9px 18px;
-      color: white;
-      background: var(--green);
-      border-radius: 30px;
-    }
-
-    /* 공통 제목 */
-    section {
-      padding: 82px 0;
-    }
-
-    .section-title {
-      margin-bottom: 42px;
-      text-align: center;
-    }
-
-    .section-label {
-      margin-bottom: 9px;
-      color: var(--green);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
-    }
-
-    h1, h2, h3, p {
-      margin-top: 0;
-    }
-
-    h2 {
-      margin-bottom: 14px;
-      font-size: clamp(29px, 4vw, 39px);
-      line-height: 1.45;
-      letter-spacing: -1.5px;
-    }
-
-    .section-description {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* 첫 화면 */
     .hero {
-      padding: 52px 0 65px;
-      background: var(--cream);
+      background: linear-gradient(110deg, #f2f5ec 0%, #fbf8ef 100%);
+      overflow: hidden;
     }
 
     .hero-inner {
+      min-height: 440px;
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
+      grid-template-columns: 0.92fr 1.08fr;
       align-items: center;
-      gap: 42px;
+      gap: 30px;
+      padding-top: 28px;
+      padding-bottom: 28px;
     }
 
-    .hero-badge {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 6px 16px;
-      color: var(--green-dark);
-      background: #e5eddd;
-      border-radius: 30px;
-      font-size: 15px;
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #74816f;
+      font-size: 16px;
       font-weight: 700;
+      letter-spacing: 1px;
     }
 
-    .hero h1 {
-      margin-bottom: 22px;
-      font-size: clamp(35px, 4.5vw, 51px);
-      line-height: 1.42;
+    h1 {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-size: clamp(34px, 4.2vw, 49px);
+      line-height: 1.35;
       letter-spacing: -2px;
     }
 
-    .hero h1 span {
-      color: var(--green);
-    }
-
-    .hero-description {
-      margin-bottom: 27px;
-      color: #596157;
+    .hero-copy {
+      margin: 0 0 26px;
+      color: #5e6d63;
       font-size: 19px;
       line-height: 1.9;
     }
 
     .button {
       display: inline-flex;
-      min-height: 54px;
-      justify-content: center;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      min-height: 52px;
       padding: 12px 25px;
       border: 0;
-      border-radius: 30px;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--white);
       font-size: 17px;
       font-weight: 700;
-      text-align: center;
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
 
-    .button:hover:not(:disabled) {
+    .button:hover {
+      background: #28543d;
       transform: translateY(-2px);
     }
 
-    .button-primary {
-      color: white;
-      background: var(--green);
-    }
-
-    .button-primary:hover {
-      background: var(--green-dark);
-    }
-
-    .hero-note {
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .photo-frame {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #e8e6d8, #dce7d7);
-      border-radius: 100px 24px 24px 24px;
-    }
-
     .hero-photo {
-      display: block;
-      width: 100%;
-      height: 430px;
-      object-fit: cover;
+      height: 365px;
+      border-radius: 48% 48% 22px 22px;
+      box-shadow: var(--shadow);
     }
 
-    .photo-caption {
-      position: absolute;
-      right: 14px;
-      bottom: 15px;
-      max-width: 260px;
-      padding: 13px 19px;
-      color: var(--green-dark);
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 14px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.6;
+    .section {
+      padding: 76px 0;
     }
 
-    /* 보험 고민 */
-    .concerns {
-      background: white;
+    .section-green {
+      background: var(--green-pale);
     }
 
-    .concern-grid {
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      color: var(--green);
+      font-size: clamp(28px, 3vw, 36px);
+      line-height: 1.4;
+      letter-spacing: -1px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .concerns-layout {
+      display: grid;
+      grid-template-columns: 1.5fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .concern-cards {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 16px;
     }
 
     .concern-card {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      padding: 26px;
-      background: #f8faf5;
-      border: 1px solid #e8eee3;
-      border-radius: 22px;
+      min-height: 235px;
+      padding: 23px 19px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
     }
 
-    .concern-card:nth-child(2) {
-      background: #fbf7ef;
-      border-color: #f0e7d8;
-    }
-
-    .concern-card:nth-child(3) {
-      background: #f5f8f2;
-    }
-
-    .card-icon {
-      display: flex;
-      width: 60px;
-      height: 60px;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 17px;
-      color: var(--green-dark);
-      background: #e3edd9;
+    .round-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
       border-radius: 50%;
-      font-size: 28px;
-    }
-
-    .concern-card:nth-child(2) .card-icon {
-      background: #f0e2c8;
+      background: #e6efe1;
+      color: var(--green);
+      font-size: 25px;
     }
 
     .concern-card h3 {
-      margin-bottom: 12px;
-      font-size: 22px;
+      margin: 0 0 10px;
+      font-size: 19px;
       line-height: 1.5;
     }
 
     .concern-card p {
-      margin-bottom: 20px;
+      margin: 0;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.85;
-    }
-
-    .card-photo {
-      display: block;
-      width: 100%;
-      height: 180px;
-      margin-top: auto;
-      object-fit: cover;
-      background: #e9e7dc;
-      border-radius: 13px;
-    }
-
-    /* 상담 원칙 */
-    .guidance {
-      background: var(--green-light);
-    }
-
-    .guidance-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .guidance h2 {
-      margin-bottom: 20px;
-    }
-
-    .guidance-text {
-      color: #566157;
-      font-size: 18px;
-    }
-
-    .guidance-list {
-      display: grid;
-      gap: 14px;
-      margin: 25px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .guidance-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 17px;
-    }
-
-    .check {
-      display: inline-flex;
-      flex: 0 0 27px;
-      width: 27px;
-      height: 27px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 3px;
-      color: white;
-      background: var(--green);
-      border-radius: 50%;
       font-size: 15px;
-      font-weight: 700;
+      line-height: 1.7;
     }
 
-    .guidance-photo {
-      display: block;
-      width: 100%;
-      height: 390px;
-      object-fit: cover;
-      background: #e3e7d9;
-      border-radius: 24px;
+    .side-photo {
+      height: 100%;
+      min-height: 260px;
+      max-height: 350px;
+      border-radius: 18px;
     }
 
-    /* 상담 절차 */
-    .process {
-      background: white;
-    }
-
-    .process-grid {
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 22px;
     }
 
-    .process-card {
-      padding: 30px 20px;
-      background: #faf9f5;
-      border: 1px solid #eeeae0;
-      border-radius: 20px;
+    .step-card {
+      position: relative;
+      padding: 28px 22px;
       text-align: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
     }
 
     .step-number {
-      display: flex;
-      width: 54px;
-      height: 54px;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto 18px;
-      color: white;
-      background: var(--green);
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 15px;
+      color: var(--white);
+      background: #719d72;
       border-radius: 50%;
-      font-size: 23px;
+      font-size: 19px;
       font-weight: 800;
     }
 
-    .process-card h3 {
-      margin-bottom: 12px;
-      font-size: 21px;
+    .step-symbol {
+      margin-bottom: 10px;
+      color: var(--green);
+      font-size: 30px;
     }
 
-    .process-card p {
-      margin-bottom: 0;
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .step-card p {
+      margin: 0;
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.8;
     }
 
-    /* 카카오톡 상담 */
-    .contact {
-      padding: 65px 0;
-      background: var(--cream);
+    .consultation {
+      background: var(--beige);
     }
 
-    .contact-box {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 40px 28px;
-      background: white;
-      border: 1px solid #eee8dc;
-      border-radius: 25px;
-      text-align: center;
+    .consultation-inner {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      align-items: center;
+      gap: 38px;
     }
 
-    .contact-box h2 {
-      margin-bottom: 15px;
+    .consultation-photo {
+      height: 280px;
+      border-radius: 20px;
     }
 
-    .contact-box > p {
-      margin-bottom: 25px;
+    .consultation-copy h2 {
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 30px;
+      line-height: 1.45;
+    }
+
+    .consultation-copy p {
+      margin: 0 0 22px;
       color: var(--muted);
-      font-size: 17px;
     }
 
     .kakao-button {
-      color: #392f0b;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 13px 24px;
+      border-radius: 999px;
       background: #fee500;
-    }
-
-    .kakao-button:disabled {
-      color: #655e3a;
-      background: #f7ed9d;
-      cursor: not-allowed;
-      opacity: 0.9;
-    }
-
-    .contact-small {
-      margin: 16px 0 0 !important;
-      font-size: 13px !important;
-    }
-
-    /* 하단 안내 */
-    .footer {
-      padding: 32px 0;
-      color: #e2e8df;
-      background: #344b39;
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.3fr;
-      gap: 35px;
-    }
-
-    .footer-logo {
-      margin-bottom: 9px;
-      color: white;
-      font-size: 22px;
+      color: #302c1c;
+      font-size: 17px;
       font-weight: 800;
     }
 
-    .footer-copy {
-      color: #d4ddd0;
-      font-size: 13px;
-      line-height: 1.9;
+    .kakao-button:hover {
+      background: #f5dc00;
     }
 
-    .footer h3 {
-      margin-bottom: 8px;
-      color: white;
-      font-size: 15px;
+    .kakao-symbol {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #302c1c;
+      color: #fee500;
+      font-size: 12px;
+    }
+
+    .kakao-note {
+      margin: 10px 0 0;
+      color: #6d756b;
+      font-size: 13px;
+    }
+
+    .footer {
+      padding: 28px 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      color: var(--green);
+      font-weight: 800;
+      font-size: 18px;
     }
 
     .footer p {
-      margin-bottom: 8px;
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    /* 태블릿 및 스마트폰 */
-    @media (max-width: 800px) {
+    .disclaimer {
+      padding: 18px 0 25px;
+      background: #fff;
+      color: #777f77;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 850px) {
       .header-inner {
-        padding: 12px 0;
-        flex-direction: column;
-        gap: 9px;
-      }
-
-      .logo {
-        font-size: 24px;
-      }
-
-      .menu {
-        width: 100%;
-        justify-content: space-between;
+        min-height: 70px;
+        flex-wrap: wrap;
         gap: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .nav {
+        gap: 17px;
         font-size: 14px;
       }
 
-      .menu .menu-button {
-        padding: 6px 12px;
-      }
-
-      .hero-inner,
-      .guidance-inner {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .hero {
-        padding: 38px 0 45px;
-      }
-
-      .hero h1 {
-        font-size: clamp(34px, 7vw, 45px);
+      .hero-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
       }
 
       .hero-photo {
-        height: 340px;
+        height: 310px;
       }
 
-      .concern-grid {
+      .concerns-layout {
         grid-template-columns: 1fr;
-        gap: 17px;
       }
 
-      .concern-card {
-        padding: 23px;
+      .side-photo {
+        height: 300px;
+        max-height: none;
       }
 
-      .card-photo {
-        height: 220px;
-      }
-
-      .guidance-photo {
-        height: 320px;
-      }
-
-      .process-grid {
-        gap: 13px;
-      }
-
-      .process-card {
-        padding: 25px 13px;
-      }
-
-      .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 18px;
+      .consultation-inner {
+        gap: 24px;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       body {
         font-size: 16px;
       }
 
       .container {
-        width: 91%;
+        width: min(100% - 32px, 520px);
       }
 
-      section {
-        padding: 57px 0;
+      .header-inner {
+        justify-content: center;
       }
 
-      .menu {
-        font-size: 12px;
+      .brand {
+        justify-content: center;
+        width: 100%;
+        font-size: 22px;
       }
 
-      .menu .menu-button {
-        padding: 5px 9px;
+      .nav {
+        width: 100%;
+        justify-content: center;
+        gap: 0;
+        font-size: 13px;
       }
 
-      .hero h1 {
-        font-size: 34px;
-        letter-spacing: -1.4px;
+      .nav a {
+        padding: 4px 10px;
       }
 
-      .hero-description {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-top: 38px;
+        padding-bottom: 30px;
+      }
+
+      .eyebrow {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 35px;
+        letter-spacing: -1.5px;
+      }
+
+      .hero-copy {
         font-size: 17px;
       }
 
       .hero-photo {
-        height: 270px;
+        height: 250px;
+        border-radius: 22px;
       }
 
-      .photo-caption {
-        right: 8px;
-        bottom: 8px;
-        padding: 10px 13px;
-        font-size: 13px;
+      .section {
+        padding: 52px 0;
       }
 
-      .section-title {
-        margin-bottom: 30px;
+      .section-heading {
+        margin-bottom: 23px;
       }
 
-      .section-description {
-        font-size: 16px;
+      .section-heading h2 {
+        font-size: 28px;
       }
 
-      .card-photo {
-        height: 190px;
+      .section-heading p {
+        font-size: 15px;
       }
 
-      .guidance-text {
-        font-size: 17px;
-      }
-
-      .guidance-photo {
-        height: 260px;
-      }
-
-      .process-grid {
+      .concern-cards {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
 
-      .process-card {
-        padding: 24px 16px;
+      .concern-card {
+        min-height: 0;
+        padding: 20px;
       }
 
-      .contact-box {
-        padding: 32px 18px;
+      .concern-card h3 {
+        font-size: 19px;
       }
 
-      .contact-box > p {
-        font-size: 16px;
+      .concern-card p {
+        font-size: 15px;
       }
 
-      .button {
+      .round-icon {
+        margin-bottom: 10px;
+      }
+
+      .side-photo {
+        min-height: 0;
+        height: 230px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .step-card {
+        padding: 22px 18px;
+      }
+
+      .step-card h3 {
+        font-size: 19px;
+      }
+
+      .consultation-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .consultation-photo {
+        height: 220px;
+      }
+
+      .consultation-copy h2 {
+        font-size: 26px;
+      }
+
+      .kakao-button {
         width: 100%;
-        padding: 12px 15px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- 상단 메뉴 -->
-  <header class="site-header">
+  <header class="header" id="home">
     <div class="container header-inner">
-      <a class="logo" href="#home" aria-label="보험과 친구하자 홈">
-        <span class="logo-leaf" aria-hidden="true">🌿</span>
-        보험과 친구하자!
+      <a class="brand" href="#home" aria-label="보험과 친구하자 홈">
+        <span class="brand-icon" aria-hidden="true"><span>잎</span></span>
+        <span>보험과 친구하자!</span>
       </a>
 
-      <nav class="menu" aria-label="주요 메뉴">
+      <nav class="nav" aria-label="주요 메뉴">
         <a href="#home">홈</a>
         <a href="#concerns">보험 고민</a>
-        <a href="#process">상담 절차</a>
-        <a class="menu-button" href="#contact">상담 문의</a>
+        <a href="#steps">상담 절차</a>
+        <a href="#contact">문의하기</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- 첫 화면: 따뜻한 가족 이미지 -->
-    <section class="hero" id="home">
+    <section class="hero">
       <div class="container hero-inner">
-
-        <div class="hero-copy">
-          <div class="hero-badge">🌱 내 곁의 편안한 보험 상담</div>
-
-          <h1>
-            보험이 궁금할 때<br>
-            <span>편하게 물어보세요.</span>
-          </h1>
-
-          <p class="hero-description">
+        <div class="hero-content">
+          <p class="eyebrow">소중한 오늘, 든든한 내일을 위해</p>
+          <h1>보험이 궁금할 때<br>편하게 물어보세요.</h1>
+          <p class="hero-copy">
             복잡하게 느껴지는 보험 이야기,<br>
             이해하기 쉽게 안내해 드립니다.
           </p>
-
-          <a class="button button-primary" href="#contact">
-            상담 문의하기 <span aria-hidden="true">→</span>
-          </a>
-
-          <p class="hero-note">
-            작은 궁금증도 괜찮습니다. 편안하게 문의하세요.
-          </p>
+          <a class="button" href="#contact">편안하게 상담 알아보기 →</a>
         </div>
 
-        <div class="photo-frame">
-          <!-- Unsplash 이미지. 이용 조건은 하단 안내를 확인하세요. -->
-          <img
-            class="hero-photo"
-            src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1100&q=85"
-            alt="함께 시간을 보내는 따뜻한 가족"
-            fetchpriority="high"
-          >
-          <div class="photo-caption">
-            가족을 생각하는 마음으로<br>
-            보험 이야기를 함께 나눕니다.
-          </div>
-        </div>
-
+        <img
+          class="hero-photo"
+          src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=85"
+          alt="함께 시간을 보내는 따뜻한 가족"
+          fetchpriority="high"
+        >
       </div>
     </section>
 
-    <!-- 보험 관련 고민 -->
-    <section class="concerns" id="concerns">
+    <section class="section section-green" id="concerns">
       <div class="container">
-
-        <div class="section-title">
-          <p class="section-label">YOUR CONCERNS</p>
-          <h2>이런 고민이 있으신가요?</h2>
-          <p class="section-description">
-            혼자 고민하지 마세요.<br>
-            하나씩 확인하며 이해하기 쉽게 안내해 드립니다.
-          </p>
+        <div class="section-heading">
+          <h2>이런 고민, 있으신가요?</h2>
+          <p>보험에 대해 궁금한 점이 있다면 언제든지 편하게 살펴보세요.</p>
         </div>
 
-        <div class="concern-grid">
+        <div class="concerns-layout">
+          <div class="concern-cards">
+            <article class="concern-card">
+              <div class="round-icon" aria-hidden="true">▤</div>
+              <h3>가입한 보험이<br>궁금할 때</h3>
+              <p>내가 가입한 보험의 보장 내용이 궁금하신가요?</p>
+            </article>
 
-          <article class="concern-card">
-            <div class="card-icon" aria-hidden="true">📋</div>
+            <article class="concern-card">
+              <div class="round-icon" aria-hidden="true">₩</div>
+              <h3>보험료가<br>부담될 때</h3>
+              <p>매달 나가는 보험료와 보장 내용을 함께 살펴볼 수 있습니다.</p>
+            </article>
 
-            <h3>가입한 보험이 궁금할 때</h3>
+            <article class="concern-card">
+              <div class="round-icon" aria-hidden="true">♡</div>
+              <h3>새로운 보험을<br>알아볼 때</h3>
+              <p>내 상황에 맞는 보장과 선택 사항을 알아보고 싶으신가요?</p>
+            </article>
+          </div>
 
-            <p>
-              내가 가입한 보험의 보장 내용과 보장 기간,
-              주요 확인 사항이 궁금하신가요?
-              현재 계약을 이해할 수 있도록 함께 살펴봅니다.
-            </p>
-
-            <img
-              class="card-photo"
-              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
-              alt="서류를 살펴보며 대화하는 사람들"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="concern-card">
-            <div class="card-icon" aria-hidden="true">🌿</div>
-
-            <h3>보험료가 부담될 때</h3>
-
-            <p>
-              매달 내는 보험료가 부담스럽다면
-              현재 보험료와 보장 내용을 살펴보고
-              확인할 수 있는 방법을 안내해 드립니다.
-            </p>
-
-            <img
-              class="card-photo"
-              src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
-              alt="계산기와 서류를 이용해 비용을 확인하는 모습"
-              loading="lazy"
-            >
-          </article>
-
-          <article class="concern-card">
-            <div class="card-icon" aria-hidden="true">🤝</div>
-
-            <h3>새로운 보험을 알아볼 때</h3>
-
-            <p>
-              나와 가족에게 어떤 보장이 필요한지,
-              상품을 선택할 때 무엇을 비교해야 하는지
-              알기 쉽게 설명해 드립니다.
-            </p>
-
-            <img
-              class="card-photo"
-              src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80"
-              alt="편안한 분위기에서 상담하는 사람들"
-              loading="lazy"
-            >
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 편안한 상담 안내 -->
-    <section class="guidance" id="guidance">
-      <div class="container guidance-inner">
-
-        <div>
-          <p class="section-label">OUR PROMISE</p>
-
-          <h2>
-            어려운 보험도<br>
-            쉽게 이해할 수 있도록
-          </h2>
-
-          <p class="guidance-text">
-            보험은 가입하는 것만큼이나
-            내용을 제대로 이해하는 것이 중요합니다.
-            궁금한 점을 먼저 듣고 차근차근 설명해 드리겠습니다.
-          </p>
-
-          <ul class="guidance-list">
-            <li>
-              <span class="check" aria-hidden="true">✓</span>
-              <span>어려운 보험 용어를 쉬운 말로 설명합니다.</span>
-            </li>
-
-            <li>
-              <span class="check" aria-hidden="true">✓</span>
-              <span>궁금한 점을 충분히 질문하실 수 있습니다.</span>
-            </li>
-
-            <li>
-              <span class="check" aria-hidden="true">✓</span>
-              <span>보장 내용과 보험료를 함께 비교해 봅니다.</span>
-            </li>
-
-            <li>
-              <span class="check" aria-hidden="true">✓</span>
-              <span>충분히 이해하고 직접 판단하실 수 있도록 안내합니다.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
           <img
-            class="guidance-photo"
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85"
-            alt="서로 이야기를 나누며 상담하는 사람들"
+            class="side-photo"
+            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85"
+            alt="가족과 함께 이야기를 나누는 모습"
             loading="lazy"
           >
         </div>
-
       </div>
     </section>
 
-    <!-- 상담 진행 절차 -->
-    <section class="process" id="process">
+    <section class="section" id="steps">
       <div class="container">
-
-        <div class="section-title">
-          <p class="section-label">CONSULTATION PROCESS</p>
-          <h2>상담은 이렇게 진행됩니다.</h2>
-          <p class="section-description">
-            처음 문의하시는 분도 걱정하지 마세요.<br>
-            세 단계로 편안하게 진행합니다.
-          </p>
+        <div class="section-heading">
+          <h2>상담 진행 절차</h2>
+          <p>복잡하지 않습니다. 세 단계로 차근차근 진행합니다.</p>
         </div>
 
-        <div class="process-grid">
-
-          <article class="process-card">
-            <div class="step-number">1</div>
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-symbol" aria-hidden="true">☏</div>
             <h3>궁금한 내용 문의하기</h3>
-            <p>
-              보험에 대해 궁금한 점이나<br>
-              고민을 편하게 말씀해 주세요.
-            </p>
+            <p>궁금한 점이나 고민을<br>편하게 문의해 주세요.</p>
           </article>
 
-          <article class="process-card">
-            <div class="step-number">2</div>
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-symbol" aria-hidden="true">⌕</div>
             <h3>필요한 내용 확인하기</h3>
-            <p>
-              현재 상황과 궁금하신 점을<br>
-              확인하고 상담 내용을 정리합니다.
-            </p>
+            <p>현재 상황과 궁금한 내용을<br>함께 확인합니다.</p>
           </article>
 
-          <article class="process-card">
-            <div class="step-number">3</div>
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-symbol" aria-hidden="true">♙</div>
             <h3>설명 듣고 직접 판단하기</h3>
-            <p>
-              보장 내용과 보험료 등을<br>
-              이해하기 쉽게 설명해 드립니다.
-            </p>
+            <p>설명을 충분히 듣고<br>본인의 판단에 따라 결정하세요.</p>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- 카카오톡 상담 -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <div class="contact-box">
+    <section class="section consultation" id="contact">
+      <div class="container consultation-inner">
+        <img
+          class="consultation-photo"
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85"
+          alt="편안한 분위기에서 상담하는 모습"
+          loading="lazy"
+        >
 
-          <p class="section-label">CONTACT</p>
-
-          <h2>
-            보험이 궁금하시다면<br>
-            편하게 이야기 나눠요.
-          </h2>
-
+        <div class="consultation-copy">
+          <h2>궁금한 점이 있으시면<br>편하게 이야기 나눠요.</h2>
           <p>
-            작은 궁금증부터 보험에 관한 고민까지<br>
-            부담 없이 문의해 주세요.
+            어려운 보험 용어도 알기 쉽게 설명해 드립니다.<br>
+            충분히 이해한 후 신중하게 판단하실 수 있도록 돕겠습니다.
           </p>
 
           <!--
             카카오톡 상담 링크 연결 방법:
-            1. 카카오톡 채널을 개설합니다.
-            2. 실제 채널의 공개 URL을 확인합니다.
-            3. 아래 버튼의 disabled 속성을 삭제합니다.
-            4. button을 다음 형태의 a 태그로 교체합니다.
-
-            <a class="button kakao-button"
-               href="여기에_실제_카카오톡_상담_URL"
-               target="_blank"
-               rel="noopener noreferrer">
-              카카오톡으로 상담하기 →
-            </a>
-
-            실제 상담 URL을 확인한 뒤에만 연결하세요.
+            아래 href="#" 부분을 본인의 실제 카카오톡 상담 URL로 바꾸세요.
+            예: href="https://open.kakao.com/o/실제오픈채팅코드"
+            실제 상담 링크를 준비하기 전에는 # 상태로 두세요.
           -->
+          <a
+            class="kakao-button"
+            href="#"
+            onclick="return false;"
+            aria-label="카카오톡 상담 링크 설정 전"
+          >
+            <span class="kakao-symbol" aria-hidden="true">TALK</span>
+            카카오톡 상담하기 →
+          </a>
 
-          <button class="button kakao-button" type="button" disabled>
-            💬 카카오톡 상담 링크 준비 중
-          </button>
-
-          <p class="contact-small">
-            카카오톡 상담 버튼은 실제 상담 링크 연결 후 이용하실 수 있습니다.
+          <p class="kakao-note">
+            ※ 카카오톡 상담 링크는 실제 주소를 준비한 후 연결해 주세요.
           </p>
-
         </div>
       </div>
     </section>
   </main>
 
-  <!-- 하단 안내 및 주의 문구 -->
   <footer class="footer">
     <div class="container footer-inner">
-
       <div>
-        <div class="footer-logo">🌿 보험과 친구하자!</div>
-
-        <div class="footer-copy">
-          복잡한 보험 이야기, 쉽게 이해할 수 있도록<br>
-          언제나 편안한 마음으로 함께하겠습니다.
-        </div>
+        <div class="footer-brand">🌿 보험과 친구하자!</div>
+        <p>보험 이야기를 조금 더 쉽고 편안하게.</p>
       </div>
-
-      <div>
-        <h3>보험 관련 안내 및 주의 사항</h3>
-
-        <div class="footer-copy">
-          <p>
-            본 홈페이지는 보험 관련 정보 및 상담 안내를 위한 페이지입니다.
-          </p>
-
-          <p>
-            보험 상품의 보장 내용, 보험료 및 가입 조건은 상품과 개인의
-            상황에 따라 달라질 수 있습니다. 가입 전 상품설명서와 약관을
-            충분히 확인하시기 바랍니다.
-          </p>
-
-          <p>
-            보험 가입 여부와 상품 선택은 충분한 설명을 듣고
-            본인의 필요에 따라 신중하게 결정하시기 바랍니다.
-          </p>
-
-          <p>
-            보험 모집 및 관련 상담은 관계 법령과 자격 요건을 준수하여
-            진행해야 합니다.
-          </p>
-        </div>
-      </div>
-
+      <p>충분히 이해하고 신중하게 선택하세요.</p>
     </div>
   </footer>
 
+  <div class="disclaimer">
+    <div class="container">
+      본 홈페이지는 보험 관련 정보와 상담 안내를 위한 페이지입니다.
+      보험의 보장 내용과 보험료는 상품 및 개인의 조건에 따라 달라질 수 있습니다.
+      실제 가입 여부는 약관과 상품 설명을 충분히 확인한 후 결정하시기 바랍니다.
+      보험 가입이나 특정 결과를 보장하지 않습니다.
+    </div>
+  </div>
 </body>
 </html>
