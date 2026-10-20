@@ -1,1 +1,1167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f5ec">
+  <meta name="description" content="보험과 친구하자! 복잡한 보험 고민을 편안하게 상담해 드립니다.">
+  <title>보험과 친구하자! | 따뜻한 보험 상담</title>
 
+  <style>
+    :root {
+      --green: #78946b;
+      --dark-green: #3e6348;
+      --light-green: #edf1e4;
+      --beige: #f8f4e9;
+      --cream: #fffdf8;
+      --brown: #96704d;
+      --text: #263a32;
+      --muted: #68756d;
+      --border: #e6e3d8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo",
+                   "Noto Sans KR", sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* 상단 메뉴 */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 253, 248, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--dark-green);
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      font-size: 34px;
+    }
+
+    .brand em {
+      color: var(--brown);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* 첫 화면 */
+    .hero {
+      background: linear-gradient(115deg, #f2f1df, #fbf4e8);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      min-height: 390px;
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      align-items: center;
+      gap: 25px;
+      padding-top: 28px;
+      padding-bottom: 28px;
+    }
+
+    .hero-copy {
+      padding: 20px 0;
+    }
+
+    .eyebrow {
+      color: var(--dark-green);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      margin: 12px 0 18px;
+      color: var(--dark-green);
+      font-size: clamp(35px, 4.2vw, 54px);
+      line-height: 1.22;
+      letter-spacing: -2.5px;
+    }
+
+    .hero h1 span {
+      color: var(--brown);
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      color: #536158;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .handwriting {
+      color: var(--green);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 330px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 150px 18px 18px 18px;
+      box-shadow: 0 15px 35px rgba(79, 91, 62, 0.12);
+    }
+
+    .button {
+      min-height: 48px;
+      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .button:hover {
+      filter: brightness(0.97);
+      transform: translateY(-2px);
+    }
+
+    .button-green {
+      background: var(--green);
+      color: white;
+    }
+
+    .button-outline {
+      border: 1px solid var(--green);
+      background: transparent;
+      color: var(--dark-green);
+    }
+
+    /* 공통 섹션 */
+    .section {
+      padding: 68px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-heading .eyebrow {
+      font-size: 13px;
+    }
+
+    .section-heading h2 {
+      margin: 5px 0 9px;
+      font-size: clamp(26px, 3vw, 34px);
+      letter-spacing: -1.2px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* 보험 고민 카드 */
+    .concerns {
+      background: #fffdf8;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .concern-card {
+      min-height: 205px;
+      padding: 27px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 4px 15px rgba(58, 74, 52, 0.045);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .concern-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 9px 24px rgba(58, 74, 52, 0.09);
+    }
+
+    .card-icon {
+      width: 57px;
+      height: 57px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 13px;
+      border-radius: 50%;
+      background: var(--light-green);
+      font-size: 27px;
+    }
+
+    .concern-card:nth-child(2) .card-icon {
+      background: #f5ead6;
+    }
+
+    .concern-card:nth-child(3) .card-icon {
+      background: #e8efdb;
+    }
+
+    .concern-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      letter-spacing: -0.6px;
+    }
+
+    .concern-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .card-link {
+      margin-top: auto;
+      color: var(--dark-green);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* 상담 절차 */
+    .process {
+      background: linear-gradient(120deg, #f0f2e6, #f7f5e9);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      text-align: center;
+    }
+
+    .step {
+      padding: 15px 10px;
+    }
+
+    .step-icon {
+      width: 88px;
+      height: 88px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border: 8px solid white;
+      border-radius: 50%;
+      background: #e7eddc;
+      font-size: 32px;
+      box-shadow: 0 3px 12px rgba(69, 89, 56, 0.06);
+    }
+
+    .step-number {
+      width: 31px;
+      height: 31px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 7px;
+      border-radius: 50%;
+      background: var(--dark-green);
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+      font-size: 19px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* 상담 신청 영역 */
+    .consultation {
+      background: #fcfaf4;
+    }
+
+    .consult-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(270px, 0.85fr);
+      gap: 25px;
+      align-items: start;
+    }
+
+    .form-panel,
+    .side-panel {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 5px 18px rgba(55, 70, 49, 0.045);
+    }
+
+    .form-panel {
+      padding: 28px;
+    }
+
+    .form-heading {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 23px;
+    }
+
+    .form-heading .card-icon {
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .form-heading h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .form-heading p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label,
+    .field legend {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .required {
+      color: #a65a43;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      border: 1px solid #d9ded6;
+      border-radius: 8px;
+      outline: none;
+      background: #fff;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(120, 148, 107, 0.13);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #a2aaa3;
+    }
+
+    fieldset.field {
+      padding: 0;
+      border: 0;
+    }
+
+    .radio-list {
+      display: grid;
+      gap: 10px;
+      padding: 15px;
+      border: 1px solid #e5e6df;
+      border-radius: 9px;
+      background: #fdfcf8;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .radio-option input {
+      width: 17px;
+      min-height: 17px;
+      height: 17px;
+      margin: 0;
+      accent-color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .privacy-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin: 20px 0;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .privacy-check input {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .privacy-details {
+      margin: -8px 0 18px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f3f5ed;
+      color: #566457;
+      font-size: 13px;
+    }
+
+    .privacy-details h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+
+    .privacy-details p {
+      margin: 5px 0;
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 53px;
+      border-radius: 10px;
+      background: var(--green);
+      color: white;
+      font-size: 17px;
+    }
+
+    .form-notice {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* 오른쪽 안내 */
+    .side-panel {
+      padding: 18px;
+    }
+
+    .side-box {
+      margin-bottom: 16px;
+      padding: 22px 19px;
+      border-radius: 12px;
+      background: #f1f4e9;
+    }
+
+    .side-box:last-child {
+      margin-bottom: 0;
+    }
+
+    .side-box.kakao-box {
+      background: #fff6d8;
+    }
+
+    .side-box h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .side-box p {
+      margin: 0 0 15px;
+      color: #5c685f;
+      font-size: 13px;
+    }
+
+    .kakao-button {
+      width: 100%;
+      min-height: 48px;
+      border-radius: 30px;
+      background: #fee500;
+      color: #332d19;
+      font-size: 14px;
+    }
+
+    .small-note {
+      margin: 12px 0 0 !important;
+      font-size: 12px !important;
+    }
+
+    .side-list {
+      margin: 10px 0 0;
+      padding-left: 20px;
+      color: #566457;
+      font-size: 13px;
+    }
+
+    .side-list li {
+      margin: 8px 0;
+    }
+
+    /* 하단 */
+    .footer {
+      padding: 30px 20px 20px;
+      background: #e9eddf;
+      text-align: center;
+    }
+
+    .footer-brand {
+      margin-bottom: 8px;
+      color: var(--dark-green);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .footer p {
+      margin: 5px 0;
+      color: #5d6b5d;
+      font-size: 13px;
+    }
+
+    .footer-bottom {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid #d8dfcf;
+      color: #647263;
+      font-size: 12px;
+    }
+
+    .floating-kakao {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 90;
+      min-height: 52px;
+      padding: 12px 19px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 40px;
+      background: #fee500;
+      color: #332d19;
+      font-size: 14px;
+      font-weight: 900;
+      box-shadow: 0 5px 20px rgba(40, 45, 30, 0.16);
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 30px, 540px);
+      }
+
+      .nav {
+        min-height: 65px;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 10px 0;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .brand-icon {
+        font-size: 29px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 8px;
+        font-size: 12px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 34px;
+        padding-bottom: 30px;
+      }
+
+      .hero-copy {
+        padding: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(35px, 9vw, 46px);
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .hero-photo {
+        height: 245px;
+        border-radius: 80px 12px 12px 12px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .concern-card {
+        min-height: 0;
+        padding: 21px;
+      }
+
+      .concern-card h3 {
+        font-size: 18px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .step {
+        padding: 8px 0 18px;
+      }
+
+      .step-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 28px;
+      }
+
+      .consult-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .form-panel {
+        padding: 20px 16px;
+      }
+
+      .form-heading h2 {
+        font-size: 22px;
+      }
+
+      .side-panel {
+        padding: 13px;
+      }
+
+      .floating-kakao {
+        right: 14px;
+        bottom: 14px;
+        min-height: 46px;
+        padding: 10px 16px;
+      }
+
+      .footer {
+        padding-bottom: 80px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 상단 메뉴 -->
+  <header class="header">
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="보험과 친구하자 홈">
+        <span class="brand-icon" aria-hidden="true">🌿</span>
+        <span>보험과 <em>친구하자!</em></span>
+      </a>
+
+      <nav class="nav-links" aria-label="주 메뉴">
+        <a href="#home">홈</a>
+        <a href="#concerns">보험 고민</a>
+        <a href="#process">상담 절차</a>
+        <a href="#consultation">상담 신청</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 첫 화면 -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">당신의 소중한 미래를 위한 든든한 동행</div>
+
+          <h1>
+            보험과<br>
+            <span>친구하자!</span>
+          </h1>
+
+          <p>
+            복잡한 보험, 이제 혼자 고민하지 마세요.<br>
+            당신의 궁금증을 함께 살펴보고<br>
+            이해하기 쉽게 안내해 드립니다.
+          </p>
+
+          <a class="button button-green" href="#consultation">
+            무료 상담 신청하기 →
+          </a>
+
+          <p class="handwriting">함께라서 더 든든합니다 ♡</p>
+        </div>
+
+        <div>
+          <img
+            class="hero-photo"
+            src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&q=85"
+            alt="함께 시간을 보내는 따뜻한 가족"
+            fetchpriority="high"
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 보험 고민 카드 -->
+    <section class="section concerns" id="concerns">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">YOUR INSURANCE GUIDE</div>
+          <h2>어떤 보험 고민이 있으신가요?</h2>
+          <p>작은 궁금증부터 차근차근 함께 살펴보겠습니다.</p>
+        </div>
+
+        <div class="card-grid">
+          <a class="concern-card" href="#consultation"
+             data-topic="가입한 보험이 궁금해요">
+            <div class="card-icon" aria-hidden="true">🛡️</div>
+            <h3>가입한 보험이 궁금해요</h3>
+            <p>내가 가입한 보험의 보장 내용을 이해하기 쉽게 살펴보세요.</p>
+            <span class="card-link">상담 신청하기 →</span>
+          </a>
+
+          <a class="concern-card" href="#consultation"
+             data-topic="보험료가 부담돼요">
+            <div class="card-icon" aria-hidden="true">💰</div>
+            <h3>보험료가 부담돼요</h3>
+            <p>현재 보험료와 보장 내용을 살펴보고 합리적인 방법을 고민해 보세요.</p>
+            <span class="card-link">상담 신청하기 →</span>
+          </a>
+
+          <a class="concern-card" href="#consultation"
+             data-topic="새로운 보험을 알아보고 싶어요">
+            <div class="card-icon" aria-hidden="true">🌱</div>
+            <h3>새로운 보험을 알아보고 싶어요</h3>
+            <p>필요한 보장과 예산을 고려해 적합한 선택을 알아보세요.</p>
+            <span class="card-link">상담 신청하기 →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 상담 진행 절차 -->
+    <section class="section process" id="process">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">HOW IT WORKS</div>
+          <h2>상담 진행 절차</h2>
+          <p>간단한 세 단계로 상담을 시작할 수 있습니다.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">1</div>
+            <div class="step-icon" aria-hidden="true">📝</div>
+            <h3>상담 신청</h3>
+            <p>궁금한 내용을 작성하고<br>상담을 신청해 주세요.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">2</div>
+            <div class="step-icon" aria-hidden="true">💬</div>
+            <h3>상담 일정 조율</h3>
+            <p>실제 상담 접수 후<br>상담 방법과 일정을 조율합니다.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">3</div>
+            <div class="step-icon" aria-hidden="true">🤝</div>
+            <h3>맞춤 상담 진행</h3>
+            <p>궁금한 점을 확인하고<br>필요한 정보를 안내해 드립니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 상담 신청서 -->
+    <section class="section consultation" id="consultation">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">CONTACT US</div>
+          <h2>편안하게 상담을 신청하세요</h2>
+          <p>필수 항목만 작성해 주세요. 민감한 보험 정보는 입력하지 마세요.</p>
+        </div>
+
+        <div class="consult-layout">
+          <div class="form-panel">
+            <div class="form-heading">
+              <div class="card-icon" aria-hidden="true">📝</div>
+              <div>
+                <h2>상담 신청하기</h2>
+                <p>아래 양식을 작성해 주세요.</p>
+              </div>
+            </div>
+
+            <form id="consultForm">
+              <div class="field">
+                <label for="name">
+                  이름 <span class="required">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="이름을 입력해 주세요."
+                  maxlength="30"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="phone">
+                  연락처 <span class="required">*</span>
+                </label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="연락 가능한 전화번호"
+                  maxlength="20"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  required
+                >
+              </div>
+
+              <fieldset class="field">
+                <legend>
+                  상담 분야 <span class="required">*</span>
+                </legend>
+
+                <div class="radio-list">
+                  <label class="radio-option">
+                    <input type="radio" name="topic"
+                           value="가입한 보험이 궁금해요" required>
+                    가입한 보험이 궁금해요
+                  </label>
+
+                  <label class="radio-option">
+                    <input type="radio" name="topic"
+                           value="보험료가 부담돼요">
+                    보험료가 부담돼요
+                  </label>
+
+                  <label class="radio-option">
+                    <input type="radio" name="topic"
+                           value="새로운 보험을 알아보고 싶어요">
+                    새로운 보험을 알아보고 싶어요
+                  </label>
+
+                  <label class="radio-option">
+                    <input type="radio" name="topic"
+                           value="무료 보장 분석 신청">
+                    무료 보장 분석 신청
+                  </label>
+
+                  <label class="radio-option">
+                    <input type="radio" name="topic"
+                           value="기타 문의 사항">
+                    기타 문의 사항
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="message">상담 내용 (선택)</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  maxlength="1000"
+                  placeholder="궁금한 내용을 간단히 작성해 주세요.&#10;주민등록번호, 계좌번호, 보험증권 등 민감한 정보는 입력하지 마세요."
+                ></textarea>
+              </div>
+
+              <label class="privacy-check" for="privacyConsent">
+                <input
+                  type="checkbox"
+                  id="privacyConsent"
+                  name="privacyConsent"
+                  required
+                >
+                <span>
+                  개인정보 수집 및 이용에 동의합니다.
+                  <span class="required">(필수)</span>
+                </span>
+              </label>
+
+              <div class="privacy-details">
+                <h3>개인정보 수집 및 이용 안내</h3>
+                <p><strong>수집 항목:</strong> 이름, 연락처, 상담 분야, 선택 입력한 상담 내용</p>
+                <p><strong>이용 목적:</strong> 보험 상담 문의 확인 및 상담 연락</p>
+                <p><strong>보유 기간:</strong> 상담 목적 달성 후 지체 없이 파기합니다. 다만, 관련 법령에 보존 의무가 있는 경우 해당 기간 동안 보관합니다.</p>
+                <p><strong>동의 거부:</strong> 동의를 거부할 수 있으며, 필수 동의 거부 시 온라인 상담 신청을 이용할 수 없습니다.</p>
+                <p>실제 운영 전 개인정보처리자, 문의처, 구체적인 보유 기간 및 처리 방침을 확정하여 안내해야 합니다.</p>
+              </div>
+
+              <button class="button submit-button" type="submit">
+                상담 신청하기 →
+              </button>
+
+              <p class="form-notice" id="formNotice" role="status" aria-live="polite">
+                현재 상담 접수 서버가 연결되지 않았습니다.
+                이 양식은 신청 내용을 실제로 전송하거나 저장하지 않습니다.
+              </p>
+            </form>
+          </div>
+
+          <!-- 상담 안내 -->
+          <aside class="side-panel">
+            <div class="side-box kakao-box">
+              <h3>💛 카카오톡 상담</h3>
+              <p>
+                전화 상담이 부담스럽다면<br>
+                카카오톡으로 편안하게 문의하세요.
+              </p>
+
+              <a
+                class="button kakao-button"
+                id="kakaoButton"
+                href="#"
+                rel="noopener noreferrer"
+              >
+                카카오톡 상담하기 →
+              </a>
+
+              <p class="small-note">
+                실제 상담 링크를 연결한 뒤 이용할 수 있습니다.
+              </p>
+            </div>
+
+            <div class="side-box">
+              <h3>🔒 상담 신청 안내</h3>
+              <p>
+                문의 내용을 확인하고 상담을 진행하기 위한 안내입니다.
+              </p>
+
+              <ol class="side-list">
+                <li>실제 상담 신청은 접수 시스템 연결 후 가능합니다.</li>
+                <li>접수 서버 연결 전에는 작성한 정보가 전송되지 않습니다.</li>
+                <li>보험 가입이나 보장 내용은 개인 상황에 따라 달라질 수 있습니다.</li>
+              </ol>
+            </div>
+
+            <div class="side-box">
+              <h3>🌿 개인정보 최소 수집</h3>
+              <p>
+                상담에 필요한 최소한의 정보만 요청합니다.
+                주민등록번호나 보험증권 등 민감한 자료는 이 양식에 입력하지 마세요.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 하단 -->
+  <footer class="footer">
+    <div class="footer-brand">🌿 보험과 친구하자!</div>
+    <p>당신의 소중한 고민을 함께 살펴보겠습니다.</p>
+    <p>편안하고 이해하기 쉬운 보험 상담을 지향합니다.</p>
+
+    <div class="footer-bottom">
+      <p>개인정보 처리 안내 | 이용 안내</p>
+      <p>© 보험과 친구하자! All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 모바일에서도 보이는 카카오톡 버튼 -->
+  <a
+    class="floating-kakao"
+    id="floatingKakao"
+    href="#"
+    rel="noopener noreferrer"
+    aria-label="카카오톡 상담"
+  >
+    💬 카카오톡 상담
+  </a>
+
+  <script>
+    /*
+     * 1. 카카오톡 연결 방법
+     * 아래 KAKAO_CHAT_URL에 실제 오픈채팅 또는 상담 링크를 입력하세요.
+     * 지금은 빈 값이므로 연결된 것처럼 동작하지 않습니다.
+     */
+    const KAKAO_CHAT_URL = "";
+
+    const kakaoButtons = [
+      document.getElementById("kakaoButton"),
+      document.getElementById("floatingKakao")
+    ];
+
+    kakaoButtons.forEach(function(button) {
+      button.addEventListener("click", function(event) {
+        if (!KAKAO_CHAT_URL.trim()) {
+          event.preventDefault();
+          alert(
+            "카카오톡 상담 링크가 아직 연결되지 않았습니다.\n\n" +
+            "index.html 코드에서 KAKAO_CHAT_URL에 실제 상담 링크를 입력해 주세요."
+          );
+          return;
+        }
+
+        try {
+          const url = new URL(KAKAO_CHAT_URL);
+
+          if (url.protocol !== "https:" ||
+              url.hostname !== "open.kakao.com") {
+            event.preventDefault();
+            alert("유효한 카카오톡 오픈채팅 HTTPS 주소를 입력해 주세요.");
+            return;
+          }
+
+          button.href = url.href;
+          button.target = "_blank";
+        } catch (error) {
+          event.preventDefault();
+          alert("카카오톡 상담 링크 형식을 확인해 주세요.");
+        }
+      });
+    });
+
+    /*
+     * 2. 상담 신청서
+     * 실제 서버가 연결되기 전에는 접수 완료 메시지를 표시하지 않습니다.
+     */
+    const form = document.getElementById("consultForm");
+    const formNotice = document.getElementById("formNotice");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      formNotice.textContent =
+        "상담 신청 정보가 전송되지 않았습니다. " +
+        "현재 접수 서버가 연결되어 있지 않습니다. " +
+        "실제 신청을 받으려면 안전한 접수 시스템을 먼저 연결해 주세요.";
+
+      alert(
+        "아직 상담 신청을 접수할 수 없습니다.\n\n" +
+        "접수 서버가 연결되지 않아 입력하신 내용은 전송되지 않았습니다."
+      );
+    });
+
+    /*
+     * 3. 보험 고민 카드를 누르면 해당 상담 분야가 자동 선택됩니다.
+     */
+    document.querySelectorAll("[data-topic]").forEach(function(card) {
+      card.addEventListener("click", function() {
+        const topic = card.getAttribute("data-topic");
+        const radio = Array.from(
+          document.querySelectorAll('input[name="topic"]')
+        ).find(function(input) {
+          return input.value === topic;
+        });
+
+        if (radio) {
+          radio.checked = true;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
